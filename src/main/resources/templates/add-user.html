@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление нового пользователя</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+</head>
+<body>
+  <!--<form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <label for="email">Email</label>
+    <input type="text" th:field="*{email}" id="email" placeholder="Email">
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <input type="submit" value="Add User">-->
+
+      <div class="container">
+          <form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
+              <div class="form-group">
+                  <label for="name">ФИО</label>
+                  <input type="text" th:field ="*{name}" class="form-control" id="name" placeholder="Введите ФИО">
+                  <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+              </div>
+
+              <div class="form-group">
+                  <label for="email">Почтовый адрес</label>
+                  <input type="email" th:field ="*{email}" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Введите почтовый адрес">
+
+                  <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+              </div>
+
+              <div class="form-group">
+                  <label for="selectRole">Роль</label>
+                  <select class="form-control" th:field ="*{role}" id="selectRole" name="selectRole">
+                      <option value="">Выберите роль</option>
+                      <option th:each="role : ${roles}"
+                              th:value="${role.id}"
+                              th:text="${role.name}"></option>
+                  </select>
+              </div>
+
+              <div class="form-group form-check">
+                  <input id="is_active" type="checkbox" class="form-check-input" th:field="*{is_active}" value = "1" />
+                  <label class="form-check-label" for="is_active">Активный</label>
+              </div>
+
+                  <input type="submit" class="btn btn-primary text-left" value="Сохранить"/>
+                  <button type="button" class="btn btn-default text-left" data-dismiss="modal">Отмена</button>
+
+          </form>
+      </div>
+</body>
+</html>

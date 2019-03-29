@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+
+</head>
+<body>
+
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">Market</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item active">
+                <a class="nav-link" data-toggle="modal" href="#useraddmodal">Добавить</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" data-toggle="modal" href="#confirm-delete">Удалить</a>
+            </li>
+
+
+            <li class="nav-item active">
+                <a class="nav-link" data-toggle="modal" href="#">Список пользователей<span class="sr-only">(current)</span></a>
+            </li>
+
+        </ul>
+    </div>
+</nav>-->
+
+
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-8"><h2>Справочник пользователей</h2></div>
+                <div class="col-sm-4">
+                    <a  class="btn btn-info add-new" href="/signup">Добавить</a>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ФИО</th>
+                <th scope="col">Почтовый адрес</th>
+                <th scope="col">Роль</th>
+                <th scope="col">Статус</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "user : ${users}">
+                <td th:text = "${user.name}"/>
+                <td th:text = "${user.email}"/>
+                <td th:text = "${user.role.name}"/>
+                <td><input type="checkbox"  th:checked = "${user.is_active}"/></td>
+                <td>
+                    <a th:href="@{/edit/{id}(id=${user.id})}">Edit</a>
+                    <a th:href="@{/delete/{id}(id=${user.id})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal-->
+    <!--<div class="modal fade" id="useraddmodal" role="dialog">
+        <div class="modal-dialog">-->
+
+            <!-- Modal content-->
+            <!--<div class="modal-content">
+                <div class="modal-body">
+                    <form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
+                        <div class="form-group">
+                            <label for="name">ФИО</label>
+                            <input type="text" th:field ="*{name}" class="form-control" id="name" placeholder="Введите ФИО">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Почтовый адрес</label>
+                            <input type="email" th:field ="*{email}" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Введите почтовый адрес">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selectRole">Роль</label>
+                            <select class="form-control" th:field ="*{role}" id="selectRole" name="selectRole">
+                                <option value="">Выберите роль</option>
+                                <option th:each="role : ${roles}"
+                                        th:value="${role.id}"
+                                        th:text="${role.name}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input id="is_active" type="checkbox" class="form-check-input" th:field="*{is_active}" value = "1" />
+                            <label class="form-check-label" for="is_active">Активный</label>
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <input type="submit" class="btn btn-primary" value="Сохранить"/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>-->
+
+
+
+
+</div>
+
+
+</body>
+</html>
